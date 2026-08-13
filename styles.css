@@ -235,6 +235,30 @@ body {
   to   { opacity: 1; transform: none; }
 }
 
+/* the background, reveal after 10s ──────── */
+.bgvideo {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease);
+  pointer-events: none;
+}
+.bgvideo.is-on { opacity: 1; }
+/* once the video is on, darken it a touch so the content stays readable,
+   and push it behind the grain/vignette we already render on body */
+body.is-crying::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(8, 8, 10, .58);
+  pointer-events: none;
+}
+
 /* the rat ─────────────────────────────────── */
 .rat {
   position: fixed;

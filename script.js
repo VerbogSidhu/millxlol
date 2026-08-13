@@ -75,4 +75,19 @@
     if (document.hidden) { if (timer) { clearInterval(timer); timer = null; } }
     else if (!timer) { restart(); }
   });
+
+  /* after ten seconds of calm, the background video takes over */
+  var bgvideo = document.getElementById("bgvideo");
+  if (bgvideo) {
+    var reveal = function () {
+      bgvideo.classList.add("is-on");
+      document.body.classList.add("is-crying");
+      try { bgvideo.play().catch(function () {}); } catch (e) {}
+    };
+    if (reduced) {
+      /* respect reduced motion: don't auto-entertain the background */
+    } else {
+      setTimeout(reveal, 10000);
+    }
+  }
 })();
