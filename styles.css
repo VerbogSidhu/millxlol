@@ -273,14 +273,11 @@ body::before {
   transition: opacity 10s linear;
 }
 body.is-crying::before { opacity: 1; }
-/* the gif phase is brighter/busier, so lean on a heavier scrim + text
-   shadows to keep the body text and quote author readable */
-body.is-looping::before { background: rgba(6, 6, 9, .74); }
-body.is-looping .me__bio,
-body.is-looping .ticker__by,
-body.is-looping #quote-text-inner {
-  text-shadow: 0 1px 8px rgba(0, 0, 0, .9), 0 0 2px rgba(0, 0, 0, .8);
-}
+/* the gif phase is brighter/busier; lean on pure white + a heavier scrim */
+body.is-looping::before { background: rgba(6, 6, 9, .78); }
+body.is-looping .me__bio { color: #fff; }
+body.is-looping #quote-text-inner { color: #fff; }
+body.is-looping .ticker__by { color: #fff; }
 
 /* the rat ─────────────────────────────────── */
 .rat {
