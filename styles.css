@@ -244,20 +244,22 @@ body {
   object-fit: cover;
   z-index: -2;
   opacity: 0;
-  transition: opacity 1.2s var(--ease);
+  transition: opacity 10s linear;
   pointer-events: none;
 }
 .bgvideo.is-on { opacity: 1; }
-/* once the video is on, darken it a touch so the content stays readable,
-   and push it behind the grain/vignette we already render on body */
-body.is-crying::before {
+/* the scrim fades in alongside the video over the same ten seconds */
+body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   background: rgba(8, 8, 10, .58);
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 10s linear;
 }
+body.is-crying::before { opacity: 1; }
 
 /* the rat ─────────────────────────────────── */
 .rat {

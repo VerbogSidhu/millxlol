@@ -76,18 +76,14 @@
     else if (!timer) { restart(); }
   });
 
-  /* after ten seconds of calm, the background video takes over */
+  /* after load, the background video starts fading in and reaches
+     full opacity over the same ten-second window */
   var bgvideo = document.getElementById("bgvideo");
-  if (bgvideo) {
-    var reveal = function () {
+  if (bgvideo && !reduced) {
+    requestAnimationFrame(function () {
       bgvideo.classList.add("is-on");
       document.body.classList.add("is-crying");
       try { bgvideo.play().catch(function () {}); } catch (e) {}
-    };
-    if (reduced) {
-      /* respect reduced motion: don't auto-entertain the background */
-    } else {
-      setTimeout(reveal, 10000);
-    }
+    });
   }
 })();
