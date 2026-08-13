@@ -206,14 +206,16 @@ body {
   position: relative;
   overflow: hidden;
   min-height: 1.5em;
+  max-height: 4.2em;
 }
 .ticker__quote {
   margin: 0;
   font-family: var(--mono);
   font-size: clamp(12px, 1.5vw, 13.5px);
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
   color: var(--ink-2);
-  display: inline-flex;
+  display: inline;
   align-items: baseline;
   gap: 6px;
   transition: opacity .35s var(--ease), transform .35s var(--ease);

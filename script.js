@@ -15,6 +15,13 @@
     { text: "The rapist is evil.", by: "Middles" },
     { text: 'WINEDLLOVERRIDES="OnlineFix64,SteamOverlay64,winmm,dnet,steam_api64=n,b"', by: "Renascent" },
     { text: "hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'", by: "Mountable" },
+    { text: "Hello! My name is Sid! Sorry for being late!", by: "Moonix" },
+    { text: "Hey! It's me, it's nigity!", by: "Slash" },
+    { text: "ffmpeg -i in.mp4 -c:v libx264 -crf 28  -c:a copy out.mp4", by: "Renascent" },
+    { text: "i love yaemori", by: "Millx" },
+    { text: "Kaede Azusagawa is always a baddie.", by: "Mountable" },
+    { text: "KAEDE", by: "Mountable" },
+    { text: "bro honestly do you think i am stupid or something because lying straight to my face about not knowing what ftg is has to be the dumbest move you could have made. i literally spent time digging through old server logs and found you clearly interacting with slash, ratwithoutaface, and mountable which completely exposes your little act. i have been around the housing scene for over 5 years and i know exactly who the problem players are so pretending you are clueless isn't going to fly here. i explicitly asked you if you knew them just to test your honesty and you failed immediately which makes you look insanely sus. housingclient contains private exploits that i am absolutely not risking getting leaked to that group or patched by admins because some random decided to share it. i can see the screenshots right in front of me showing you in their discord servers so there is no point in trying to deny it now. if you had just been honest from the start maybe i would have considered it but lying proves you are hiding something. i check the background of everyone who wants an access key specifically to prevent people like you from snaking your way in. you are clearly associated with that circle and i am not about to compromise my entire project just because you thought you could trick me. it is actually hilarious that you thought saying \"what is ftg 2085 anyways\" would work when your name is right there in the member lists next to known griefers. i have to be careful because hypixel admins are already watching everything i do and banning my alts left and right. letting someone from ftg get a license is basically asking for the client to get detected instantly. i dont care if you claim you \"just joined\" that server, the association alone is enough for me to deny you permanently. you wasted your chance by trying to play dumb so don't bother asking for a key ever again. go back to slash and tell him his plan didn't work lmfao because i am not falling for it. seriously get lost.", by: "Troaph" },
   ];
 
   function shuffle(a) {
