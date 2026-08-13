@@ -90,6 +90,7 @@
     if (bggif) {
       bgvideo.addEventListener("ended", function () {
         bggif.classList.add("is-on");
+        document.body.classList.add("is-looping");
         bgvideo.classList.remove("is-on");
       });
     }
