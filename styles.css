@@ -204,9 +204,8 @@ body {
 }
 .ticker__roll {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   min-height: 1.5em;
-  max-height: 4.2em;
 }
 .ticker__quote {
   margin: 0;
