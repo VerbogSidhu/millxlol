@@ -244,10 +244,23 @@ body {
   object-fit: cover;
   z-index: -2;
   opacity: 0;
-  transition: opacity 10s linear;
+  transition: opacity 10s linear, opacity .8s linear;
   pointer-events: none;
 }
 .bgvideo.is-on { opacity: 1; }
+/* the gif that takes over after the cry-video ends */
+.bggif {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity .8s linear;
+  pointer-events: none;
+}
+.bggif.is-on { opacity: 1; }
 /* the scrim fades in alongside the video over the same ten seconds */
 body::before {
   content: "";

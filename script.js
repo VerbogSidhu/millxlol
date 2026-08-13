@@ -79,11 +79,19 @@
   /* after load, the background video starts fading in and reaches
      full opacity over the same ten-second window */
   var bgvideo = document.getElementById("bgvideo");
+  var bggif = document.getElementById("bggif");
   if (bgvideo && !reduced) {
     requestAnimationFrame(function () {
       bgvideo.classList.add("is-on");
       document.body.classList.add("is-crying");
       try { bgvideo.play().catch(function () {}); } catch (e) {}
     });
+    /* when the cry-video ends, crossfade to the looping gif for good */
+    if (bggif) {
+      bgvideo.addEventListener("ended", function () {
+        bggif.classList.add("is-on");
+        bgvideo.classList.remove("is-on");
+      });
+    }
   }
 })();
