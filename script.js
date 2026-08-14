@@ -5,6 +5,11 @@
   var QUOTES = [
     { text: "3959 Hunters Green Dr, Florence, KY 41042, USA", by: "Slash" },
     { text: "deaf means you cant see idioy", by: "RatWithAFace" },
+    { text: "IM BEING SPOILED BY THE MHA WAIFU TIER LIST", by: "Slash" },
+    { text: "Medium 40 minutes <-- dryer settings", by: "Millx" },
+    { text: "I shape elite spaces with strategic, influential insight.", by: "CTG123456" },
+    { text: "He who is right does not always win.", by: "Ssammyk" },
+    { text: "Dude, death is like the weirdest thing ever cause its like EVERYTHING is exactly as it should be except for him. Its lit just frozen in time <-- referring to charlie kirk", by: "SysKeyJS" },
     { text: "Froppy is bad.", by: "Mountable" },
     { text: "She slash on my back till I millx on her scent", by: "Ssammyk" },
     { text: "CTG123456 I WILL SEND PACKETS AND PIZZA", by: "CarterPCs" },
