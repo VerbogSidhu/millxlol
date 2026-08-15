@@ -46,6 +46,7 @@
     { text: "i have feelings for ctg.", by: "Mountable" },
     { text: "Woah man! That is SO sigma! Only in OHIO!!  😂😂😂 (My family is being held hostage)", by: "Slash" },
     { text: "MILLX THE AUDIOPHILE TRIED MEETING UP WITH A 14 YEAR OLD HEADSET", by: "Slash" },
+    { text: "Her brother fucked their cat.", by: "RatWithAFace" },
   ];
 
   function shuffle(a) {
