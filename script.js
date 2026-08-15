@@ -39,6 +39,10 @@
     { text: "@everyone HOUSING CLIENT HAS BEEN CRACKED", by: "Slash" },
     { text: "please make millx gc owner", by: "Slash" },
     { text: "is there a december 31st this year", by: "Millx" },
+    { text: "why deku kinda bad", by: "Slash" },
+    { text: "@hourly_shitpost @grok i came on my hamster", by: "Slash" },
+    { text: "I REALLY WANNA EDATE SOMEONE ON DISCORD", by: "Slash" },
+    { text: "🚨 chronos password is password", by: "Slash" },
   ];
 
   function shuffle(a) {
