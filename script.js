@@ -48,6 +48,7 @@
     { text: "MILLX THE AUDIOPHILE TRIED MEETING UP WITH A 14 YEAR OLD HEADSET", by: "Slash" },
     { text: "Her brother fucked their cat.", by: "RatWithAFace" },
     { text: "who dat little kid tho 👀", by: "Slash" },
+    { text: "i found a really low quality video of her and i busted a nut to it", by: "Slash" },
   ];
 
   function shuffle(a) {
