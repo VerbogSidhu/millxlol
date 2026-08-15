@@ -26,6 +26,19 @@
     { text: "Kaede Azusagawa is always a baddie.", by: "Mountable" },
     { text: "KAEDE", by: "Mountable" },
     { text: "bro honestly do you think i am stupid or something because lying straight to my face about not knowing what ftg is has to be the dumbest move you could have made. i literally spent time digging through old server logs and found you clearly interacting with slash, ratwithoutaface, and mountable which completely exposes your little act. i have been around the housing scene for over 5 years and i know exactly who the problem players are so pretending you are clueless isn't going to fly here. i explicitly asked you if you knew them just to test your honesty and you failed immediately which makes you look insanely sus. housingclient contains private exploits that i am absolutely not risking getting leaked to that group or patched by admins because some random decided to share it. i can see the screenshots right in front of me showing you in their discord servers so there is no point in trying to deny it now. if you had just been honest from the start maybe i would have considered it but lying proves you are hiding something. i check the background of everyone who wants an access key specifically to prevent people like you from snaking your way in. you are clearly associated with that circle and i am not about to compromise my entire project just because you thought you could trick me. it is actually hilarious that you thought saying \"what is ftg 2085 anyways\" would work when your name is right there in the member lists next to known griefers. i have to be careful because hypixel admins are already watching everything i do and banning my alts left and right. letting someone from ftg get a license is basically asking for the client to get detected instantly. i dont care if you claim you \"just joined\" that server, the association alone is enough for me to deny you permanently. you wasted your chance by trying to play dumb so don't bother asking for a key ever again. go back to slash and tell him his plan didn't work lmfao because i am not falling for it. seriously get lost.", by: "Troaph" },
+    { text: "dih cord on some eval tienanmensquare ming", by: "Renascent" },
+    { text: "oreimo be hittin", by: "Renascent" },
+    { text: "@Slash would you like it if I sensually slipped my hand into your pants.", by: "Ssammyk" },
+    { text: "bluesky sounds like a furry platform", by: "Renascent" },
+    { text: "i love yaemori btw", by: "Millx" },
+    { text: "Lick my balls @kanyewest", by: "Slash" },
+    { text: "ONII CHANNNNNNNNN", by: "Renascent" },
+    { text: "~/reset_cx.sh", by: "Millx" },
+    { text: "Did you know that when you take a photo and then display it on my monitor it infact does not change my monitor quality?", by: "Mountable" },
+    { text: "can i buy minecraft with ebt", by: "Slash" },
+    { text: "@everyone HOUSING CLIENT HAS BEEN CRACKED", by: "Slash" },
+    { text: "please make millx gc owner", by: "Slash" },
+    { text: "is there a december 31st this year", by: "Millx" },
   ];
 
   function shuffle(a) {
