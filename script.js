@@ -49,6 +49,10 @@
     { text: "Her brother fucked their cat.", by: "RatWithAFace" },
     { text: "who dat little kid tho 👀", by: "Slash" },
     { text: "i found a really low quality video of her and i busted a nut to it", by: "Slash (referring to a lesbian hallway crush)" },
+    { text: "i tap danced in these shitty band shoes and she smiled so i rizzed her up", by: "Slash" },
+    { text: "PERRRRSOONA!", by: "RatWithAFace" },
+    { text: "i knew a teacher named dick i called him Lil D", by: "Slash" },
+    { text: "he got fired for like sexually harassing some gay kid", by: "Slash" },
   ];
 
   function shuffle(a) {
