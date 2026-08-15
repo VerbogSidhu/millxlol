@@ -53,6 +53,11 @@
     { text: "PERRRRSOONA!", by: "RatWithAFace" },
     { text: "i knew a teacher named dick i called him Lil D", by: "Slash" },
     { text: "he got fired for like sexually harassing some gay kid", by: "Slash" },
+    { text: "STREAM ONESHIT", by: "Renascent" },
+    { text: "-noverifyfiles -nobootstrapupdate -skipinitialbootstrap -norepairfiles -overridepackageurl", by: "Millx" },
+    { text: "aploogy y i removed a random device sorry if that was you.", by: "Slash" },
+    { text: "how do i sahve my shaft", by: "Millx" },
+    { text: "Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for \"fair use\" for purposes such as criticism, comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips the balance in favor of fair use.", by: "Slash" },
   ];
 
   function shuffle(a) {
