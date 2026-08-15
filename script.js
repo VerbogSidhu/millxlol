@@ -60,6 +60,12 @@
     { text: "Copyright Disclaimer Under Section 107 of the Copyright Act 1976, allowance is made for \"fair use\" for purposes such as criticism, comment, news reporting, teaching, scholarship, and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips the balance in favor of fair use.", by: "Slash" },
     { text: "COMBINED TIGHTNESS ??? 🔥", by: "Slash" },
     { text: "The reported X account @FTG2085 is using my copyrighted self-portrait photograph without my permission. The infringing use appears as the account header/banner image on the @FTG2085 profile. The same copyrighted photograph also appears in posts from the account. The profile URL is included because the copyrighted photograph is being used as the account header/banner image. I took this photograph myself and I am the copyright owner. I have not licensed, assigned, or authorized the reported account or its operator to use, copy, upload, display, or distribute this photograph. I previously contacted the account operator through Discord and directly told them that the image is mine and that they do not have permission to use it. They refused to remove it and continued using the image anyway. I request removal or disabling of access to the unauthorized uses of my copyrighted photograph, including the @FTG2085 account header/banner image and any posts/media attachments from the account that contain the same photograph.", by: "CTG123456" },
+    { text: "ngl this might have been the start of my love for piss", by: "Renascent" },
+    { text: "kirkinson", by: "Slash" },
+    { text: "hollon its piss time brb", by: "Slash" },
+    { text: "tell your daddy to contain his piss bottles", by: "Slash" },
+    { text: "millx please make out with me to get rid of my cold", by: "Mountable" },
+    { text: "so emotional she pissed herself", by: "Renascent" },
   ];
 
   function shuffle(a) {
