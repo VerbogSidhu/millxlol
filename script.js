@@ -66,6 +66,7 @@
     { text: "tell your daddy to contain his piss bottles", by: "Slash" },
     { text: "millx please make out with me to get rid of my cold", by: "Mountable" },
     { text: "so emotional she pissed herself", by: "Renascent" },
+    { text: "replay with type plz", by: "Nebra" },
   ];
 
   function shuffle(a) {
