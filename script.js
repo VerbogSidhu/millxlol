@@ -3,7 +3,6 @@
   "use strict";
 
   var QUOTES = [
-    { text: "3959 Hunters Green Dr, Florence, KY 41042, USA", by: "Slash" },
     { text: "deaf means you cant see idioy", by: "RatWithAFace" },
     { text: "IM BEING SPOILED BY THE MHA WAIFU TIER LIST", by: "Slash" },
     { text: "Medium 40 minutes <-- dryer settings", by: "Millx" },
