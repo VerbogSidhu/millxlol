@@ -43,6 +43,8 @@
     { text: "@hourly_shitpost @grok i came on my hamster", by: "Slash" },
     { text: "I REALLY WANNA EDATE SOMEONE ON DISCORD", by: "Slash" },
     { text: "🚨 chronos password is password", by: "Slash" },
+    { text: "i have feelings for ctg.", by: "Mountable" },
+    { text: "Woah man! That is SO sigma! Only in OHIO!!  😂😂😂 (My family is being held hostage)", by: "Slash" },
   ];
 
   function shuffle(a) {
