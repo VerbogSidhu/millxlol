@@ -71,6 +71,7 @@
     { text: "im tryna install pizza to ctgs house", by: "Millx" },
     { text: "HOW TIGHT IS MIKU ON THE TIGHTNESS SCALE??????????? 🤔 💢", by: "Slash" },
     { text: "i looooove yaemori btw", by: "Millx" },
+    { text: "them pixiv goons tho", by: "Slash" },
   ];
 
   function shuffle(a) {
