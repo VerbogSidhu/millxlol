@@ -68,6 +68,7 @@
     { text: "so emotional she pissed herself", by: "Renascent" },
     { text: "replay with type plz", by: "Nebra" },
     { text: "helen keller reincarnated as a shota???", by: "Slash" },
+    { text: "im tryna install pizza to ctgs house", by: "Millx" },
   ];
 
   function shuffle(a) {
