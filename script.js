@@ -69,6 +69,10 @@
     { text: "replay with type plz", by: "Nebra" },
     { text: "helen keller reincarnated as a shota???", by: "Slash" },
     { text: "im tryna install pizza to ctgs house", by: "Millx" },
+    { text: "HOW TIGHT IS MIKU ON THE TIGHTNESS SCALE??????????? 🤔 💢", by: "Slash" },
+    { text: "HOW TIGHT IS MIKU ON THE TIGHTNESS SCALE??????????? 🤔 💢", by: "Slash" },
+    { text: "HOW TIGHT IS MIKU ON THE TIGHTNESS SCALE??????????? 🤔 💢", by: "Slash" },
+    { text: "HOW TIGHT IS MIKU ON THE TIGHTNESS SCALE??????????? 🤔 💢", by: "Slash" },
   ];
 
   function shuffle(a) {
