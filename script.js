@@ -72,6 +72,7 @@
     { text: "HOW TIGHT IS MIKU ON THE TIGHTNESS SCALE??????????? 🤔 💢", by: "Slash" },
     { text: "i looooove yaemori btw", by: "Millx" },
     { text: "them pixiv goons tho", by: "Slash" },
+    { text: "I really really really really really love yaemori btw", by: "Millx" },
   ];
 
   function shuffle(a) {
