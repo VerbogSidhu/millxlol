@@ -75,6 +75,9 @@
     { text: "I really really really really really love yaemori btw", by: "Millx" },
     { text: "Much love from Tel Aviv", by: "Ssammyk" },
     { text: "I suppose.", by: "Beatrice" },
+    { text: "ily millx", by: "Slash" },
+    { text: "nah bro is using const 💀", by: "Millx" },
+    { text: "@Millx thanks for being my apple account password", by: "Slash" },
   ];
 
   function shuffle(a) {
