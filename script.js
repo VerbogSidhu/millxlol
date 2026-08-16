@@ -67,6 +67,7 @@
     { text: "millx please make out with me to get rid of my cold", by: "Mountable" },
     { text: "so emotional she pissed herself", by: "Renascent" },
     { text: "replay with type plz", by: "Nebra" },
+    { text: "helen keller reincarnated as a shota???", by: "Slash" },
   ];
 
   function shuffle(a) {
