@@ -78,6 +78,7 @@
     { text: "ily millx", by: "Slash" },
     { text: "nah bro is using const 💀", by: "Millx" },
     { text: "@Millx thanks for being my apple account password", by: "Slash" },
+    { text: "Can you make this a quote?", by: "Slash" },
   ];
 
   function shuffle(a) {
