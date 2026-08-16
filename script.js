@@ -74,6 +74,7 @@
     { text: "them pixiv goons tho", by: "Slash" },
     { text: "I really really really really really love yaemori btw", by: "Millx" },
     { text: "Much love from Tel Aviv", by: "Ssammyk" },
+    { text: "I suppose.", by: "Beatrice" },
   ];
 
   function shuffle(a) {
