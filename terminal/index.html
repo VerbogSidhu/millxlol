@@ -34,6 +34,16 @@
         0 20px 60px rgba(0, 0, 0, 0.5),
         0 0 100px rgba(0, 255, 136, 0.1);
       overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .terminal.spin {
+      animation: spin 0.5s ease;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .terminal-header {
@@ -86,8 +96,9 @@
 
     .output {
       color: #00ff88;
-      margin-bottom: 8px;
-      line-height: 1.6;
+      margin-bottom: 4px;
+      line-height: 1.5;
+      white-space: pre;
     }
 
     .output.error { color: #ff5f56; }
@@ -99,7 +110,8 @@
     .prompt-line {
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
+      margin-top: 4px;
     }
 
     .prompt {
@@ -119,35 +131,12 @@
       caret-color: #00ff88;
     }
 
-    .cursor {
-      display: inline-block;
-      width: 8px;
-      height: 16px;
-      background: #00ff88;
-      animation: blink 1s step-end infinite;
-      vertical-align: middle;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    .boot-text {
-      animation: fadeIn 0.5s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .help-cmd {
-      color: #ffbd2e;
-    }
-
-    .command-history {
+    .command-line {
       color: #666;
+    }
+
+    .command-line .cmd-text {
+      color: #fff;
     }
   </style>
 </head>
@@ -160,18 +149,15 @@
       <div class="terminal-title">millx@terminal ~ zsh</div>
     </div>
     <div class="terminal-body" id="terminal">
-      <div class="output ascii">
-███╗   ███╗██╗  ██╗███████╗██╗      ██████╗ ███████╗██╗  ██╗
+      <div class="output ascii">███╗   ███╗██╗  ██╗███████╗██╗      ██████╗ ███████╗██╗  ██╗
 ████╗ ████║╚██╗██╔╝██╔════╝██║     ██╔═══██╗██╔════╝██║  ██║
 ██╔████╔██║ ╚███╔╝ █████╗  ██║     ██║   ██║███████╗███████║
 ██║╚██╔╝██║ ██╔██╗ ██╔══╝  ██║     ██║   ██║╚════██║██╔══██║
 ██║ ╚═╝ ██║██╔╝ ██╗███████╗███████╗╚██████╔╝███████║██║  ██║
-╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
-      </div>
+╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝</div>
       <div class="output info">Welcome to Millx's personal terminal v1.0.0</div>
       <div class="output">Type 'help' to see available commands.</div>
       <div class="output" style="color: #666;">Last login: Today from the internet</div>
-      <br>
       <div class="prompt-line">
         <span class="prompt">millx@terminal ~ %</span>
         <input type="text" class="input" id="commandInput" autofocus autocomplete="off" spellcheck="false">
@@ -255,7 +241,7 @@
         { text: '  ★ Re:Zero', class: '' },
         { text: '  ★ Oshi no Ko', class: '' },
         { text: '  ★ Vinland Saga', class: '' },
-        { text: "  ★ That Time I Got Reincarnated as a Slime", class: '' },
+        { text: '  ★ That Time I Got Reincarnated as a Slime', class: '' },
         { text: '  ★ Toradora!', class: '' },
         { text: '  ★ Your Lie in April', class: '' },
         { text: '', class: '' },
@@ -272,7 +258,7 @@
         { text: '│  🌐 Website  → millx.lol           │', class: '' },
         { text: '└─────────────────────────────────────┘', class: 'ascii' },
         { text: '', class: '' },
-        { text: 'Click the links? Just kidding, this is a terminal.', class: 'warning' },
+        { text: "Click the links? Just kidding, this is a terminal.", class: 'warning' },
       ],
       quote: () => {
         const quotes = [
@@ -294,7 +280,7 @@
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
         return [
           { text: '', class: '' },
-          { text: `  ${randomQuote}`, class: 'ascii' },
+          { text: '  ' + randomQuote, class: 'ascii' },
           { text: '', class: '' },
         ];
       },
@@ -322,7 +308,7 @@
         { text: '  Host:       The Internet', class: '' },
         { text: '  Kernel:     anime-optimized', class: '' },
         { text: '  Uptime:     since birth', class: '' },
-        { text: '  Packages:   77 (quotes)', class: '' },
+        { text: '  Packages:   81 (quotes)', class: '' },
         { text: '  Shell:      zsh 5.9', class: '' },
         { text: '  Resolution: touch grass', class: 'error' },
         { text: '  DE:         terminal (you are here)', class: '' },
@@ -335,7 +321,12 @@
         { text: '', class: '' },
       ],
       clear: () => {
+        // Remove everything except we'll rebuild the prompt
+        const promptLine = terminal.querySelector('.prompt-line');
         terminal.innerHTML = '';
+        terminal.appendChild(promptLine);
+        input.value = '';
+        input.focus();
         return null;
       },
       secret: () => [
@@ -345,7 +336,7 @@
         { text: 'You found the secret command!', class: 'highlight' },
         { text: '', class: '' },
         { text: "Here's a secret: Millx's favorite color is green.", class: '' },
-        { text: "Also, he thinks Yaemori is cute.", class: '' },
+        { text: 'Also, he thinks Yaemori is cute.', class: '' },
         { text: "Don't tell anyone I told you that.", class: 'warning' },
         { text: '', class: '' },
         { text: 'This message will self-destruct in 5 seconds...', class: 'error' },
@@ -355,41 +346,56 @@
 
     function addOutput(text, className = '') {
       const div = document.createElement('div');
-      div.className = `output ${className}`;
+      div.className = 'output ' + className;
       div.textContent = text;
-      terminal.insertBefore(div, terminal.querySelector('.prompt-line'));
+      const promptLine = terminal.querySelector('.prompt-line');
+      promptLine.parentNode.insertBefore(div, promptLine);
     }
 
-    function addPromptHistory(command) {
+    function addCommandLine(command) {
       const div = document.createElement('div');
-      div.className = 'prompt-line command-history';
-      div.innerHTML = `<span class="prompt">millx@terminal ~ %</span><span style="color: #fff;">${command}</span>`;
-      terminal.insertBefore(div, terminal.querySelector('.prompt-line'));
+      div.className = 'prompt-line command-line';
+      div.innerHTML = '<span class="prompt">millx@terminal ~ %</span><span class="cmd-text">' + escapeHtml(command) + '</span>';
+      const promptLine = terminal.querySelector('.prompt-line');
+      promptLine.parentNode.insertBefore(div, promptLine);
+    }
+
+    function escapeHtml(s) {
+      const div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML;
     }
 
     function processCommand(cmd) {
-      const trimmed = cmd.trim().toLowerCase();
+      const trimmed = cmd.trim();
       
-      addPromptHistory(cmd);
+      // Add the command line to show what was typed
+      addCommandLine(trimmed);
       
-      if (trimmed === '') return;
+      if (trimmed === '') {
+        terminal.scrollTop = terminal.scrollHeight;
+        return;
+      }
 
       history.push(trimmed);
       historyIndex = history.length;
 
-      if (commands[trimmed]) {
-        const result = commands[trimmed]();
+      const cmdLower = trimmed.toLowerCase();
+      if (commands[cmdLower]) {
+        const result = commands[cmdLower]();
         if (result) {
-          result.forEach(line => addOutput(line.text, line.class));
+          result.forEach(function(line) {
+            addOutput(line.text, line.class);
+          });
         }
       } else {
-        addOutput(`zsh: command not found: ${trimmed}`, 'error');
+        addOutput('zsh: command not found: ' + trimmed, 'error');
       }
 
       terminal.scrollTop = terminal.scrollHeight;
     }
 
-    input.addEventListener('keydown', (e) => {
+    input.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         processCommand(input.value);
         input.value = '';
@@ -415,13 +421,15 @@
     });
 
     // Focus input when clicking anywhere in terminal
-    terminal.addEventListener('click', () => input.focus());
+    terminal.addEventListener('click', function() {
+      input.focus();
+    });
 
     // Easter egg: Konami code
     let konamiCode = [];
     const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
     
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       konamiCode.push(e.key);
       konamiCode = konamiCode.slice(-10);
       
@@ -430,12 +438,17 @@
         addOutput('🎮 KONAMI CODE ACTIVATED! 🎮', 'ascii');
         addOutput('You are now a true gamer.', 'info');
         addOutput('', '');
-        document.querySelector('.terminal').style.animation = 'none';
-        document.querySelector('.terminal').style.transform = 'rotate(360deg)';
-        document.querySelector('.terminal').style.transition = 'transform 1s';
-        setTimeout(() => {
-          document.querySelector('.terminal').style.transform = 'rotate(0deg)';
-        }, 1000);
+        
+        var term = document.querySelector('.terminal');
+        term.classList.remove('spin');
+        void term.offsetWidth; // Force reflow
+        term.classList.add('spin');
+        
+        setTimeout(function() {
+          term.classList.remove('spin');
+        }, 500);
+        
+        terminal.scrollTop = terminal.scrollHeight;
         konamiCode = [];
       }
     });
