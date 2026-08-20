@@ -79,6 +79,11 @@
     { text: "nah bro is using const 💀", by: "Millx" },
     { text: "@Millx thanks for being my apple account password", by: "Slash" },
     { text: "Can you make this a quote?", by: "Slash" },
+    { text: "HITLER WAS JUST MENTIONED", by: "Millx" },
+    { text: "bro the guy on the right has his hands on his balls", by: "Millx" },
+    { text: "oshi no ko anime original ending plssssssss 🙏", by: "Mountable" },
+    { text: "did you attach?", by: "Renascent" },
+    { text: "Toradora is so fucking good", by: "Millx" },
   ];
 
   function shuffle(a) {
