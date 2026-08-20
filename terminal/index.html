@@ -4,16 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>millx@terminal</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     body {
       background: #0a0a0a;
       min-height: 100vh;
@@ -23,30 +17,17 @@
       font-family: 'JetBrains Mono', monospace;
       padding: 20px;
     }
-
+    
     .terminal {
       width: 100%;
       max-width: 800px;
       background: #1a1a1a;
       border-radius: 10px;
-      box-shadow: 
-        0 0 0 1px #333,
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        0 0 100px rgba(0, 255, 136, 0.1);
+      box-shadow: 0 0 0 1px #333, 0 20px 60px rgba(0,0,0,0.5);
       overflow: hidden;
-      transition: transform 0.3s ease;
     }
-
-    .terminal.spin {
-      animation: spin 0.5s ease;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .terminal-header {
+    
+    .header {
       background: #2d2d2d;
       padding: 12px 16px;
       display: flex;
@@ -54,424 +35,280 @@
       gap: 8px;
       border-bottom: 1px solid #444;
     }
-
-    .terminal-btn {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: none;
-    }
-
-    .terminal-btn.red { background: #ff5f56; }
-    .terminal-btn.yellow { background: #ffbd2e; }
-    .terminal-btn.green { background: #27c93f; }
-
-    .terminal-title {
-      flex: 1;
-      text-align: center;
-      color: #888;
-      font-size: 13px;
-    }
-
-    .terminal-body {
+    
+    .btn { width: 12px; height: 12px; border-radius: 50%; border: none; }
+    .btn.r { background: #ff5f56; }
+    .btn.y { background: #ffbd2e; }
+    .btn.g { background: #27c93f; }
+    
+    .title { flex: 1; text-align: center; color: #888; font-size: 13px; }
+    
+    .body {
       padding: 20px;
       height: 500px;
       overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #444 #1a1a1a;
-    }
-
-    .terminal-body::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .terminal-body::-webkit-scrollbar-track {
-      background: #1a1a1a;
-    }
-
-    .terminal-body::-webkit-scrollbar-thumb {
-      background: #444;
-      border-radius: 4px;
-    }
-
-    #output {
-      margin-bottom: 0;
-    }
-
-    .line {
-      color: #00ff88;
-      margin-bottom: 4px;
+      font-size: 14px;
       line-height: 1.5;
-      white-space: pre;
     }
-
-    .line.error { color: #ff5f56; }
-    .line.warning { color: #ffbd2e; }
-    .line.info { color: #00bfff; }
-    .line.ascii { color: #ff00ff; }
-    .line.highlight { color: #fff; font-weight: bold; }
-
-    .prompt-line {
-      display: flex;
-      align-items: center;
-      margin-top: 4px;
-    }
-
-    .prompt {
-      color: #00ff88;
-      margin-right: 8px;
-      white-space: nowrap;
-    }
-
-    .input {
-      flex: 1;
-      background: transparent;
+    
+    .line { margin-bottom: 4px; white-space: pre-wrap; }
+    .green { color: #00ff88; }
+    .blue { color: #00bfff; }
+    .red { color: #ff5f56; }
+    .yellow { color: #ffbd2e; }
+    .pink { color: #ff00ff; }
+    .white { color: #fff; font-weight: bold; }
+    .gray { color: #666; }
+    
+    input {
+      background: none;
       border: none;
       color: #fff;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
+      font-family: inherit;
+      font-size: inherit;
       outline: none;
+      width: 100%;
       caret-color: #00ff88;
-    }
-
-    .cmd-line {
-      color: #666;
-    }
-
-    .cmd-line .cmd-text {
-      color: #fff;
     }
   </style>
 </head>
 <body>
-  <div class="terminal" id="terminal">
-    <div class="terminal-header">
-      <div class="terminal-btn red"></div>
-      <div class="terminal-btn yellow"></div>
-      <div class="terminal-btn green"></div>
-      <div class="terminal-title">millx@terminal ~ zsh</div>
+  <div class="terminal">
+    <div class="header">
+      <div class="btn r"></div>
+      <div class="btn y"></div>
+      <div class="btn g"></div>
+      <div class="title">millx@terminal ~ zsh</div>
     </div>
-    <div class="terminal-body" id="terminal-body">
-      <div id="output">
-        <div class="line ascii">▗▖  ▗▖▗▄▄▄▖▗▖   ▗▖   ▗▖  ▗▖
-▐▛▚▞▜▌  █  ▐▌   ▐▌    ▝▚▞▘ 
-▐▌  ▐▌  █  ▐▌   ▐▌     ▐▌  
-▐▌  ▐▌▗▄█▄▖▐▙▄▄▖▐▙▄▄▖▗▞▘▝▚▖</div>
-        <div class="line info">Welcome to Millx's personal terminal v1.0.0</div>
-        <div class="line">Type 'help' to see available commands.</div>
-        <div class="line" style="color: #666;">Last login: Today from the internet</div>
-      </div>
-      <div class="prompt-line">
-        <span class="prompt">millx@terminal ~ %</span>
-        <input type="text" class="input" id="commandInput" autofocus autocomplete="off" spellcheck="false">
-      </div>
-    </div>
+    <div class="body" id="term"></div>
   </div>
 
   <script>
-    var output = document.getElementById('output');
-    var input = document.getElementById('commandInput');
-    var terminalBody = document.getElementById('terminal-body');
+    var T = document.getElementById('term');
+    var lines = [];
     var history = [];
-    var historyIndex = -1;
+    var histIdx = -1;
 
-    var commands = {
-      help: function() {
-        return [
-          { text: 'Available commands:', class: 'info' },
-          { text: '─────────────────────────────────────', class: 'info' },
-          { text: '  help      - Show this help message', class: '' },
-          { text: '  about     - Who is Millx?', class: '' },
-          { text: '  skills    - What can Millx do?', class: '' },
-          { text: '  games     - Favorite games', class: '' },
-          { text: '  anime     - Anime recommendations', class: '' },
-          { text: '  socials   - Social media links', class: '' },
-          { text: '  quote     - Random Millx quote', class: '' },
-          { text: '  music     - What Millx listens to', class: '' },
-          { text: '  os        - System information', class: '' },
-          { text: '  clear     - Clear terminal', class: '' },
-          { text: '  secret    - ???', class: '' },
-          { text: '─────────────────────────────────────', class: 'info' },
-        ];
-      },
-      about: function() {
-        return [
-          { text: 'Fetching user data...', class: 'info' },
-          { text: '', class: '' },
-          { text: '┌─────────────────────────────────────┐', class: 'highlight' },
-          { text: '│  Name:        Millx                 │', class: 'highlight' },
-          { text: '│  Location:    The Internet          │', class: 'highlight' },
-          { text: '│  Status:      Online                │', class: 'highlight' },
-          { text: '│  Vibe:        Chill                 │', class: 'highlight' },
-          { text: '└─────────────────────────────────────┘', class: 'highlight' },
-          { text: '', class: '' },
-          { text: 'A guy who likes to play video games and watch anime.', class: '' },
-          { text: 'Mostly into JRPGs and story-rich games.', class: '' },
-          { text: 'Also makes content on YouTube sometimes.', class: '' },
-          { text: 'Known for having questionable takes.', class: 'warning' },
-        ];
-      },
-      skills: function() {
-        return [
-          { text: 'Loading skill tree...', class: 'info' },
-          { text: '', class: '' },
-          { text: '🎮 Gaming          ████████████████░░░░  85%', class: '' },
-          { text: '📺 Anime Watching  ████████████████████  100%', class: '' },
-          { text: '💬 Shitposting     ████████████████████  100%', class: '' },
-          { text: '🎵 Music Taste     ███████████████░░░░░  75%', class: '' },
-          { text: '💻 Coding          ████████░░░░░░░░░░░░  40%', class: '' },
-          { text: '😴 Sleeping        ████████████████░░░░  85%', class: '' },
-          { text: '📝 Homework        ████░░░░░░░░░░░░░░░░  20%', class: 'error' },
-          { text: '', class: '' },
-          { text: 'Status: Mostly gaming, avoiding responsibilities', class: 'warning' },
-        ];
-      },
-      games: function() {
-        return [
-          { text: 'Loading game library...', class: 'info' },
-          { text: '', class: '' },
-          { text: '=== Favorite Games ===', class: 'ascii' },
-          { text: '', class: '' },
-          { text: '  ◆ Persona 5 Royal', class: '' },
-          { text: '  ◆ Final Fantasy VII Remake', class: '' },
-          { text: '  ◆ Xenoblade Chronicles', class: '' },
-          { text: '  ◆ Trails in the Sky', class: '' },
-          { text: '  ◆ Yakuza: Like a Dragon', class: '' },
-          { text: '  ◆ Undertale', class: '' },
-          { text: '  ◆ Deltarune', class: '' },
-          { text: '', class: '' },
-          { text: 'Currently playing: Something with a 100 hour campaign', class: 'info' },
-        ];
-      },
-      anime: function() {
-        return [
-          { text: 'Loading anime list...', class: 'info' },
-          { text: '', class: '' },
-          { text: '=== Anime Recommendations from Millx ===', class: 'ascii' },
-          { text: '', class: '' },
-          { text: '  ★ Steins;Gate', class: '' },
-          { text: '  ★ Attack on Titan', class: '' },
-          { text: '  ★ Re:Zero', class: '' },
-          { text: '  ★ Oshi no Ko', class: '' },
-          { text: '  ★ Vinland Saga', class: '' },
-          { text: '  ★ That Time I Got Reincarnated as a Slime', class: '' },
-          { text: '  ★ Toradora!', class: '' },
-          { text: '  ★ Your Lie in April', class: '' },
-          { text: '', class: '' },
-          { text: 'Currently watching: Everything', class: 'info' },
-        ];
-      },
-      socials: function() {
-        return [
-          { text: 'Connecting to social networks...', class: 'info' },
-          { text: '', class: '' },
-          { text: '┌─────────────────────────────────────┐', class: 'ascii' },
-          { text: '│           SOCIAL LINKS              │', class: 'ascii' },
-          { text: '├─────────────────────────────────────┤', class: 'ascii' },
-          { text: '│  🎥 YouTube  → youtube.com/millx   │', class: '' },
-          { text: '│  🐦 Twitter  → x.com/millxismillx  │', class: '' },
-          { text: '│  🌐 Website  → millx.lol           │', class: '' },
-          { text: '└─────────────────────────────────────┘', class: 'ascii' },
-          { text: '', class: '' },
-          { text: "Click the links? Just kidding, this is a terminal.", class: 'warning' },
-        ];
-      },
-      quote: function() {
-        var quotes = [
-          '"HITLER WAS JUST MENTIONED" - Millx',
-          '"Medium 40 minutes <-- dryer settings" - Millx',
-          '"Legit Playcoins: 94" - Millx',
-          '"My inner ayanokoji..." - Millx',
-          '"fella, fella, fella" - Millx',
-          '"i love yaemori" - Millx',
-          '"i love yaemori btw" - Millx',
-          '"~/reset_cx.sh" - Millx',
-          '"is there a december 31st this year" - Millx',
-          '"nah bro is using const 💀" - Millx',
-          '"im tryna install pizza to ctgs house" - Millx',
-          '"how do i sahve my shaft" - Millx',
-          '"Toradora is so fucking good" - Millx',
-          '"bro the guy on the right has his hands on his balls" - Millx',
-        ];
-        var randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-        return [
-          { text: '', class: '' },
-          { text: '  ' + randomQuote, class: 'ascii' },
-          { text: '', class: '' },
-        ];
-      },
-      music: function() {
-        return [
-          { text: 'Loading music taste...', class: 'info' },
-          { text: '', class: '' },
-          { text: '=== Currently Vibing To ===', class: 'ascii' },
-          { text: '', class: '' },
-          { text: '  🎵 YOASOBI', class: '' },
-          { text: '  🎵 Kenshi Yonezu', class: '' },
-          { text: '  🎵 Official HIGE DANdism', class: '' },
-          { text: '  🎵 Eve', class: '' },
-          { text: '  🎵 Ado', class: '' },
-          { text: '  🎵 Persona OSTs', class: '' },
-          { text: '  🎵 A lot of anime openings', class: '' },
-          { text: '', class: '' },
-          { text: 'Currently playing: Something with "banger" in the title', class: 'info' },
-        ];
-      },
-      os: function() {
-        return [
-          { text: '', class: '' },
-          { text: 'millx-os v2.0.24 (linux/amd64)', class: '' },
-          { text: '', class: '' },
-          { text: 'System Information:', class: 'info' },
-          { text: '  OS:         millx-lol edition', class: '' },
-          { text: '  Host:       The Internet', class: '' },
-          { text: '  Kernel:     anime-optimized', class: '' },
-          { text: '  Uptime:     since birth', class: '' },
-          { text: '  Packages:   81 (quotes)', class: '' },
-          { text: '  Shell:      zsh 5.9', class: '' },
-          { text: '  Resolution: touch grass', class: 'error' },
-          { text: '  DE:         terminal (you are here)', class: '' },
-          { text: '  WM:         vibes', class: '' },
-          { text: '  Theme:      [Dark Mode]', class: '' },
-          { text: '  Icons:      📎', class: '' },
-          { text: '  Terminal:   millx-term', class: '' },
-          { text: '  CPU:        Bean with feelings', class: '' },
-          { text: '  Memory:     Too many anime quotes', class: 'warning' },
-          { text: '', class: '' },
-        ];
-      },
-      clear: function() {
-        output.innerHTML = '';
-        return null;
-      },
-      secret: function() {
-        return [
-          { text: '', class: '' },
-          { text: '🔒 ACCESS GRANTED', class: 'ascii' },
-          { text: '', class: '' },
-          { text: 'You found the secret command!', class: 'highlight' },
-          { text: '', class: '' },
-          { text: "Here's a secret: Millx's favorite color is green.", class: '' },
-          { text: 'Also, he thinks Yaemori is cute.', class: '' },
-          { text: "Don't tell anyone I told you that.", class: 'warning' },
-          { text: '', class: '' },
-          { text: 'This message will self-destruct in 5 seconds...', class: 'error' },
-          { text: 'Just kidding.', class: '' },
-        ];
-      },
-    };
-
-    function addLine(text, className) {
-      var div = document.createElement('div');
-      div.className = 'line' + (className ? ' ' + className : '');
-      div.textContent = text;
-      output.appendChild(div);
-    }
-
-    function addCommandLine(command) {
-      var div = document.createElement('div');
-      div.className = 'line cmd-line';
-      div.innerHTML = '<span class="prompt">millx@terminal ~ %</span><span class="cmd-text">' + escapeHtml(command) + '</span>';
-      output.appendChild(div);
-    }
-
-    function escapeHtml(s) {
-      var div = document.createElement('div');
-      div.textContent = s;
-      return div.innerHTML;
+    function print(text, cls) {
+      var d = document.createElement('div');
+      d.className = 'line ' + (cls || 'green');
+      d.textContent = text;
+      T.appendChild(d);
     }
 
     function scrollToBottom() {
-      terminalBody.scrollTop = terminalBody.scrollHeight;
+      T.scrollTop = T.scrollHeight;
     }
 
-    function processCommand(cmd) {
-      var trimmed = cmd.trim();
+    var ASCII = [
+      '▗▖  ▗▖▗▄▄▄▖▗▖   ▗▖   ▗▖  ▗▖',
+      '▐▛▚▞▜▌  █  ▐▌   ▐▌    ▝▚▞▘ ',
+      '▐▌  ▐▌  █  ▐▌   ▐▌     ▐▌  ',
+      '▐▌  ▐▌▗▄█▄▖▐▙▄▄▖▐▙▄▄▖▗▞▘▝▚▖'
+    ];
+
+    var QUOTES = [
+      '"HITLER WAS JUST MENTIONED" - Millx',
+      '"Medium 40 minutes <-- dryer settings" - Millx',
+      '"Legit Playcoins: 94" - Millx',
+      '"My inner ayanokoji..." - Millx',
+      '"fella, fella, fella" - Millx',
+      '"i love yaemori" - Millx',
+      '"~/reset_cx.sh" - Millx',
+      '"nah bro is using const 💀" - Millx',
+      '"Toradora is so fucking good" - Millx'
+    ];
+
+    function boot() {
+      ASCII.forEach(function(l) { print(l, 'pink'); });
+      print('Welcome to Millx\'s personal terminal v1.0.0', 'blue');
+      print('Type "help" to see available commands.', 'green');
+      print('Last login: Today from the internet', 'gray');
+      print('', 'green');
+      prompt();
+    }
+
+    function prompt() {
+      var line = document.createElement('div');
+      line.className = 'line green';
       
-      addCommandLine(trimmed);
+      var span = document.createElement('span');
+      span.textContent = 'millx@terminal ~ % ';
       
-      if (trimmed === '') {
-        scrollToBottom();
+      var inp = document.createElement('input');
+      inp.type = 'text';
+      inp.autofocus = true;
+      inp.spellcheck = false;
+      inp.autocomplete = 'off';
+      
+      inp.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          var cmd = inp.value.trim();
+          inp.disabled = true;
+          
+          if (cmd) {
+            history.push(cmd);
+            histIdx = history.length;
+          }
+          
+          run(cmd);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (histIdx > 0) {
+            histIdx--;
+            inp.value = history[histIdx];
+          }
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (histIdx < history.length - 1) {
+            histIdx++;
+            inp.value = history[histIdx];
+          } else {
+            histIdx = history.length;
+            inp.value = '';
+          }
+        }
+      });
+      
+      line.appendChild(span);
+      line.appendChild(inp);
+      T.appendChild(line);
+      scrollToBottom();
+      inp.focus();
+    }
+
+    function run(cmd) {
+      if (!cmd) {
+        prompt();
         return;
       }
-
-      history.push(trimmed);
-      historyIndex = history.length;
-
-      var cmdLower = trimmed.toLowerCase();
-      if (commands[cmdLower]) {
-        var result = commands[cmdLower]();
-        if (result) {
-          result.forEach(function(line) {
-            addLine(line.text, line.class);
-          });
-        }
-      } else {
-        addLine('zsh: command not found: ' + trimmed, 'error');
+      
+      var c = cmd.toLowerCase();
+      
+      if (c === 'help') {
+        print('Available commands:', 'blue');
+        print('─────────────────────────────────────', 'blue');
+        print('  help      - Show this help message');
+        print('  about     - Who is Millx?');
+        print('  skills    - What can Millx do?');
+        print('  games     - Favorite games');
+        print('  anime     - Anime recommendations');
+        print('  socials   - Social media links');
+        print('  quote     - Random Millx quote');
+        print('  music     - What Millx listens to');
+        print('  os        - System information');
+        print('  clear     - Clear terminal');
+        print('  secret    - ???');
+        print('─────────────────────────────────────', 'blue');
       }
-
-      scrollToBottom();
+      else if (c === 'about') {
+        print('Fetching user data...', 'blue');
+        print('┌─────────────────────────────────────┐', 'white');
+        print('│  Name:        Millx                 │', 'white');
+        print('│  Location:    The Internet          │', 'white');
+        print('│  Status:      Online                │', 'white');
+        print('│  Vibe:        Chill                 │', 'white');
+        print('└─────────────────────────────────────┘', 'white');
+        print('A guy who likes to play video games and watch anime.');
+        print('Mostly into JRPGs and story-rich games.');
+        print('Known for having questionable takes.', 'yellow');
+      }
+      else if (c === 'skills') {
+        print('Loading skill tree...', 'blue');
+        print('🎮 Gaming          ████████████████░░░░  85%');
+        print('📺 Anime Watching  ████████████████████  100%');
+        print('💬 Shitposting     ████████████████████  100%');
+        print('🎵 Music Taste     ███████████████░░░░░  75%');
+        print('💻 Coding          ████████░░░░░░░░░░░░  40%');
+        print('😴 Sleeping        ████████████████░░░░  85%');
+        print('📝 Homework        ████░░░░░░░░░░░░░░░░  20%', 'red');
+        print('Status: Mostly gaming, avoiding responsibilities', 'yellow');
+      }
+      else if (c === 'games') {
+        print('Loading game library...', 'blue');
+        print('=== Favorite Games ===', 'pink');
+        print('  ◆ Persona 5 Royal');
+        print('  ◆ Final Fantasy VII Remake');
+        print('  ◆ Xenoblade Chronicles');
+        print('  ◆ Trails in the Sky');
+        print('  ◆ Yakuza: Like a Dragon');
+        print('  ◆ Undertale');
+        print('  ◆ Deltarune');
+        print('Currently playing: Something with a 100 hour campaign', 'blue');
+      }
+      else if (c === 'anime') {
+        print('Loading anime list...', 'blue');
+        print('=== Anime Recommendations ===', 'pink');
+        print('  ★ Steins;Gate');
+        print('  ★ Attack on Titan');
+        print('  ★ Re:Zero');
+        print('  ★ Oshi no Ko');
+        print('  ★ Vinland Saga');
+        print('  ★ Toradora!');
+        print('  ★ Your Lie in April');
+        print('Currently watching: Everything', 'blue');
+      }
+      else if (c === 'socials') {
+        print('Connecting to social networks...', 'blue');
+        print('┌─────────────────────────────────────┐', 'pink');
+        print('│           SOCIAL LINKS              │', 'pink');
+        print('├─────────────────────────────────────┤', 'pink');
+        print('│  🎥 YouTube  → youtube.com/millx   │');
+        print('│  🐦 Twitter  → x.com/millxismillx  │');
+        print('│  🌐 Website  → millx.lol           │');
+        print('└─────────────────────────────────────┘', 'pink');
+        print('Just kidding, this is a terminal.', 'yellow');
+      }
+      else if (c === 'quote') {
+        var q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+        print('');
+        print('  ' + q, 'pink');
+        print('');
+      }
+      else if (c === 'music') {
+        print('Loading music taste...', 'blue');
+        print('=== Currently Vibing To ===', 'pink');
+        print('  🎵 YOASOBI');
+        print('  🎵 Kenshi Yonezu');
+        print('  🎵 Eve');
+        print('  🎵 Ado');
+        print('  🎵 Persona OSTs');
+        print('Currently playing: Something with "banger" in the title', 'blue');
+      }
+      else if (c === 'os') {
+        print('millx-os v2.0.24 (linux/amd64)');
+        print('System Information:', 'blue');
+        print('  OS:         millx-lol edition');
+        print('  Host:       The Internet');
+        print('  Kernel:     anime-optimized');
+        print('  Packages:   81 (quotes)');
+        print('  Resolution: touch grass', 'red');
+        print('  CPU:        Bean with feelings');
+        print('  Memory:     Too many anime quotes', 'yellow');
+      }
+      else if (c === 'clear') {
+        T.innerHTML = '';
+      }
+      else if (c === 'secret') {
+        print('🔒 ACCESS GRANTED', 'pink');
+        print('You found the secret command!', 'white');
+        print("Millx's favorite color is green.");
+        print('He thinks Yaemori is cute.');
+        print("Don't tell anyone.", 'yellow');
+      }
+      else {
+        print('zsh: command not found: ' + cmd, 'red');
+      }
+      
+      prompt();
     }
 
-    input.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        processCommand(input.value);
-        input.value = '';
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        if (historyIndex > 0) {
-          historyIndex--;
-          input.value = history[historyIndex];
-        }
-      } else if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        if (historyIndex < history.length - 1) {
-          historyIndex++;
-          input.value = history[historyIndex];
-        } else {
-          historyIndex = history.length;
-          input.value = '';
-        }
-      } else if (e.key === 'l' && e.ctrlKey) {
-        e.preventDefault();
-        commands.clear();
-      }
+    T.addEventListener('click', function() {
+      var inp = T.querySelector('input:not([disabled])');
+      if (inp) inp.focus();
     });
 
-    terminalBody.addEventListener('click', function() {
-      input.focus();
-    });
-
-    // Konami code
-    var konamiCode = [];
-    var konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-    
-    document.addEventListener('keydown', function(e) {
-      konamiCode.push(e.key);
-      konamiCode = konamiCode.slice(-10);
-      
-      if (konamiCode.join(',') === konamiSequence.join(',')) {
-        addLine('', '');
-        addLine('🎮 KONAMI CODE ACTIVATED! 🎮', 'ascii');
-        addLine('You are now a true gamer.', 'info');
-        addLine('', '');
-        
-        var term = document.getElementById('terminal');
-        term.classList.remove('spin');
-        void term.offsetWidth;
-        term.classList.add('spin');
-        
-        setTimeout(function() {
-          term.classList.remove('spin');
-        }, 500);
-        
-        scrollToBottom();
-        konamiCode = [];
-      }
-    });
-
-    // Focus on load
-    input.focus();
+    boot();
   </script>
 </body>
 </html>
