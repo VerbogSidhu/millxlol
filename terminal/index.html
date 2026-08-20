@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>millx@terminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 20px;
+    }
+
+    .terminal {
+      width: 100%;
+      max-width: 800px;
+      background: #1a1a1a;
+      border-radius: 10px;
+      box-shadow: 
+        0 0 0 1px #333,
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 100px rgba(0, 255, 136, 0.1);
+      overflow: hidden;
+    }
+
+    .terminal-header {
+      background: #2d2d2d;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #444;
+    }
+
+    .terminal-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+    }
+
+    .terminal-btn.red { background: #ff5f56; }
+    .terminal-btn.yellow { background: #ffbd2e; }
+    .terminal-btn.green { background: #27c93f; }
+
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      color: #888;
+      font-size: 13px;
+    }
+
+    .terminal-body {
+      padding: 20px;
+      height: 500px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #444 #1a1a1a;
+    }
+
+    .terminal-body::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .terminal-body::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+
+    .terminal-body::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 4px;
+    }
+
+    .output {
+      color: #00ff88;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .output.error { color: #ff5f56; }
+    .output.warning { color: #ffbd2e; }
+    .output.info { color: #00bfff; }
+    .output.ascii { color: #ff00ff; }
+    .output.highlight { color: #fff; font-weight: bold; }
+
+    .prompt-line {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .prompt {
+      color: #00ff88;
+      margin-right: 8px;
+      white-space: nowrap;
+    }
+
+    .input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      outline: none;
+      caret-color: #00ff88;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: #00ff88;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .boot-text {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .help-cmd {
+      color: #ffbd2e;
+    }
+
+    .command-history {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="terminal-btn red"></div>
+      <div class="terminal-btn yellow"></div>
+      <div class="terminal-btn green"></div>
+      <div class="terminal-title">millx@terminal ~ zsh</div>
+    </div>
+    <div class="terminal-body" id="terminal">
+      <div class="output ascii">
+███╗   ███╗██╗  ██╗███████╗██╗      ██████╗ ███████╗██╗  ██╗
+████╗ ████║╚██╗██╔╝██╔════╝██║     ██╔═══██╗██╔════╝██║  ██║
+██╔████╔██║ ╚███╔╝ █████╗  ██║     ██║   ██║███████╗███████║
+██║╚██╔╝██║ ██╔██╗ ██╔══╝  ██║     ██║   ██║╚════██║██╔══██║
+██║ ╚═╝ ██║██╔╝ ██╗███████╗███████╗╚██████╔╝███████║██║  ██║
+╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
+      </div>
+      <div class="output info">Welcome to Millx's personal terminal v1.0.0</div>
+      <div class="output">Type 'help' to see available commands.</div>
+      <div class="output" style="color: #666;">Last login: Today from the internet</div>
+      <br>
+      <div class="prompt-line">
+        <span class="prompt">millx@terminal ~ %</span>
+        <input type="text" class="input" id="commandInput" autofocus autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const terminal = document.getElementById('terminal');
+    const input = document.getElementById('commandInput');
+    let history = [];
+    let historyIndex = -1;
+
+    const commands = {
+      help: () => [
+        { text: 'Available commands:', class: 'info' },
+        { text: '─────────────────────────────────────', class: 'info' },
+        { text: '  help      - Show this help message', class: '' },
+        { text: '  about     - Who is Millx?', class: '' },
+        { text: '  skills    - What can Millx do?', class: '' },
+        { text: '  games     - Favorite games', class: '' },
+        { text: '  anime     - Anime recommendations', class: '' },
+        { text: '  socials   - Social media links', class: '' },
+        { text: '  quote     - Random Millx quote', class: '' },
+        { text: '  music     - What Millx listens to', class: '' },
+        { text: '  os        - System information', class: '' },
+        { text: '  clear     - Clear terminal', class: '' },
+        { text: '  secret    - ???', class: '' },
+        { text: '─────────────────────────────────────', class: 'info' },
+      ],
+      about: () => [
+        { text: 'Fetching user data...', class: 'info' },
+        { text: '', class: '' },
+        { text: '┌─────────────────────────────────────┐', class: 'highlight' },
+        { text: '│  Name:        Millx                 │', class: 'highlight' },
+        { text: '│  Location:    The Internet          │', class: 'highlight' },
+        { text: '│  Status:      Online                │', class: 'highlight' },
+        { text: '│  Vibe:        Chill                 │', class: 'highlight' },
+        { text: '└─────────────────────────────────────┘', class: 'highlight' },
+        { text: '', class: '' },
+        { text: 'A guy who likes to play video games and watch anime.', class: '' },
+        { text: 'Mostly into JRPGs and story-rich games.', class: '' },
+        { text: 'Also makes content on YouTube sometimes.', class: '' },
+        { text: 'Known for having questionable takes.', class: 'warning' },
+      ],
+      skills: () => [
+        { text: 'Loading skill tree...', class: 'info' },
+        { text: '', class: '' },
+        { text: '🎮 Gaming          ████████████████░░░░  85%', class: '' },
+        { text: '📺 Anime Watching  ████████████████████  100%', class: '' },
+        { text: '💬 Shitposting     ████████████████████  100%', class: '' },
+        { text: '🎵 Music Taste     ███████████████░░░░░  75%', class: '' },
+        { text: '💻 Coding          ████████░░░░░░░░░░░░  40%', class: '' },
+        { text: '😴 Sleeping        ████████████████░░░░  85%', class: '' },
+        { text: '📝 Homework        ████░░░░░░░░░░░░░░░░  20%', class: 'error' },
+        { text: '', class: '' },
+        { text: 'Status: Mostly gaming, avoiding responsibilities', class: 'warning' },
+      ],
+      games: () => [
+        { text: 'Loading game library...', class: 'info' },
+        { text: '', class: '' },
+        { text: '=== Favorite Games ===', class: 'ascii' },
+        { text: '', class: '' },
+        { text: '  ◆ Persona 5 Royal', class: '' },
+        { text: '  ◆ Final Fantasy VII Remake', class: '' },
+        { text: '  ◆ Xenoblade Chronicles', class: '' },
+        { text: '  ◆ Trails in the Sky', class: '' },
+        { text: '  ◆ Yakuza: Like a Dragon', class: '' },
+        { text: '  ◆ Undertale', class: '' },
+        { text: '  ◆ Deltarune', class: '' },
+        { text: '', class: '' },
+        { text: 'Currently playing: Something with a 100 hour campaign', class: 'info' },
+      ],
+      anime: () => [
+        { text: 'Loading anime list...', class: 'info' },
+        { text: '', class: '' },
+        { text: '=== Anime Recommendations from Millx ===', class: 'ascii' },
+        { text: '', class: '' },
+        { text: '  ★ Steins;Gate', class: '' },
+        { text: '  ★ Attack on Titan', class: '' },
+        { text: '  ★ Re:Zero', class: '' },
+        { text: '  ★ Oshi no Ko', class: '' },
+        { text: '  ★ Vinland Saga', class: '' },
+        { text: "  ★ That Time I Got Reincarnated as a Slime", class: '' },
+        { text: '  ★ Toradora!', class: '' },
+        { text: '  ★ Your Lie in April', class: '' },
+        { text: '', class: '' },
+        { text: 'Currently watching: Everything', class: 'info' },
+      ],
+      socials: () => [
+        { text: 'Connecting to social networks...', class: 'info' },
+        { text: '', class: '' },
+        { text: '┌─────────────────────────────────────┐', class: 'ascii' },
+        { text: '│           SOCIAL LINKS              │', class: 'ascii' },
+        { text: '├─────────────────────────────────────┤', class: 'ascii' },
+        { text: '│  🎥 YouTube  → youtube.com/millx   │', class: '' },
+        { text: '│  🐦 Twitter  → x.com/millxismillx  │', class: '' },
+        { text: '│  🌐 Website  → millx.lol           │', class: '' },
+        { text: '└─────────────────────────────────────┘', class: 'ascii' },
+        { text: '', class: '' },
+        { text: 'Click the links? Just kidding, this is a terminal.', class: 'warning' },
+      ],
+      quote: () => {
+        const quotes = [
+          '"HITLER WAS JUST MENTIONED" - Millx',
+          '"Medium 40 minutes <-- dryer settings" - Millx',
+          '"Legit Playcoins: 94" - Millx',
+          '"My inner ayanokoji..." - Millx',
+          '"fella, fella, fella" - Millx',
+          '"i love yaemori" - Millx',
+          '"i love yaemori btw" - Millx',
+          '"~/reset_cx.sh" - Millx',
+          '"is there a december 31st this year" - Millx',
+          '"nah bro is using const 💀" - Millx',
+          '"im tryna install pizza to ctgs house" - Millx',
+          '"how do i sahve my shaft" - Millx',
+          '"Toradora is so fucking good" - Millx',
+          '"bro the guy on the right has his hands on his balls" - Millx',
+        ];
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        return [
+          { text: '', class: '' },
+          { text: `  ${randomQuote}`, class: 'ascii' },
+          { text: '', class: '' },
+        ];
+      },
+      music: () => [
+        { text: 'Loading music taste...', class: 'info' },
+        { text: '', class: '' },
+        { text: '=== Currently Vibing To ===', class: 'ascii' },
+        { text: '', class: '' },
+        { text: '  🎵 YOASOBI', class: '' },
+        { text: '  🎵 Kenshi Yonezu', class: '' },
+        { text: '  🎵 Official HIGE DANdism', class: '' },
+        { text: '  🎵 Eve', class: '' },
+        { text: '  🎵 Ado', class: '' },
+        { text: '  🎵 Persona OSTs', class: '' },
+        { text: '  🎵 A lot of anime openings', class: '' },
+        { text: '', class: '' },
+        { text: 'Currently playing: Something with "banger" in the title', class: 'info' },
+      ],
+      os: () => [
+        { text: '', class: '' },
+        { text: 'millx-os v2.0.24 (linux/amd64)', class: '' },
+        { text: '', class: '' },
+        { text: 'System Information:', class: 'info' },
+        { text: '  OS:         millx-lol edition', class: '' },
+        { text: '  Host:       The Internet', class: '' },
+        { text: '  Kernel:     anime-optimized', class: '' },
+        { text: '  Uptime:     since birth', class: '' },
+        { text: '  Packages:   77 (quotes)', class: '' },
+        { text: '  Shell:      zsh 5.9', class: '' },
+        { text: '  Resolution: touch grass', class: 'error' },
+        { text: '  DE:         terminal (you are here)', class: '' },
+        { text: '  WM:         vibes', class: '' },
+        { text: '  Theme:      [Dark Mode]', class: '' },
+        { text: '  Icons:      📎', class: '' },
+        { text: '  Terminal:   millx-term', class: '' },
+        { text: '  CPU:        Bean with feelings', class: '' },
+        { text: '  Memory:     Too many anime quotes', class: 'warning' },
+        { text: '', class: '' },
+      ],
+      clear: () => {
+        terminal.innerHTML = '';
+        return null;
+      },
+      secret: () => [
+        { text: '', class: '' },
+        { text: '🔒 ACCESS GRANTED', class: 'ascii' },
+        { text: '', class: '' },
+        { text: 'You found the secret command!', class: 'highlight' },
+        { text: '', class: '' },
+        { text: "Here's a secret: Millx's favorite color is green.", class: '' },
+        { text: "Also, he thinks Yaemori is cute.", class: '' },
+        { text: "Don't tell anyone I told you that.", class: 'warning' },
+        { text: '', class: '' },
+        { text: 'This message will self-destruct in 5 seconds...', class: 'error' },
+        { text: 'Just kidding.', class: '' },
+      ],
+    };
+
+    function addOutput(text, className = '') {
+      const div = document.createElement('div');
+      div.className = `output ${className}`;
+      div.textContent = text;
+      terminal.insertBefore(div, terminal.querySelector('.prompt-line'));
+    }
+
+    function addPromptHistory(command) {
+      const div = document.createElement('div');
+      div.className = 'prompt-line command-history';
+      div.innerHTML = `<span class="prompt">millx@terminal ~ %</span><span style="color: #fff;">${command}</span>`;
+      terminal.insertBefore(div, terminal.querySelector('.prompt-line'));
+    }
+
+    function processCommand(cmd) {
+      const trimmed = cmd.trim().toLowerCase();
+      
+      addPromptHistory(cmd);
+      
+      if (trimmed === '') return;
+
+      history.push(trimmed);
+      historyIndex = history.length;
+
+      if (commands[trimmed]) {
+        const result = commands[trimmed]();
+        if (result) {
+          result.forEach(line => addOutput(line.text, line.class));
+        }
+      } else {
+        addOutput(`zsh: command not found: ${trimmed}`, 'error');
+      }
+
+      terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        processCommand(input.value);
+        input.value = '';
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (historyIndex > 0) {
+          historyIndex--;
+          input.value = history[historyIndex];
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (historyIndex < history.length - 1) {
+          historyIndex++;
+          input.value = history[historyIndex];
+        } else {
+          historyIndex = history.length;
+          input.value = '';
+        }
+      } else if (e.key === 'l' && e.ctrlKey) {
+        e.preventDefault();
+        commands.clear();
+      }
+    });
+
+    // Focus input when clicking anywhere in terminal
+    terminal.addEventListener('click', () => input.focus());
+
+    // Easter egg: Konami code
+    let konamiCode = [];
+    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    
+    document.addEventListener('keydown', (e) => {
+      konamiCode.push(e.key);
+      konamiCode = konamiCode.slice(-10);
+      
+      if (konamiCode.join(',') === konamiSequence.join(',')) {
+        addOutput('', '');
+        addOutput('🎮 KONAMI CODE ACTIVATED! 🎮', 'ascii');
+        addOutput('You are now a true gamer.', 'info');
+        addOutput('', '');
+        document.querySelector('.terminal').style.animation = 'none';
+        document.querySelector('.terminal').style.transform = 'rotate(360deg)';
+        document.querySelector('.terminal').style.transition = 'transform 1s';
+        setTimeout(() => {
+          document.querySelector('.terminal').style.transform = 'rotate(0deg)';
+        }, 1000);
+        konamiCode = [];
+      }
+    });
+  </script>
+</body>
+</html>
