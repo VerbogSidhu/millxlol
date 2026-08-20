@@ -321,7 +321,7 @@
         { text: '', class: '' },
       ],
       clear: () => {
-        // Remove everything except we'll rebuild the prompt
+        // Remove everything except the prompt
         const promptLine = terminal.querySelector('.prompt-line');
         terminal.innerHTML = '';
         terminal.appendChild(promptLine);
@@ -348,16 +348,14 @@
       const div = document.createElement('div');
       div.className = 'output ' + className;
       div.textContent = text;
-      const promptLine = terminal.querySelector('.prompt-line');
-      promptLine.parentNode.insertBefore(div, promptLine);
+      terminal.appendChild(div);
     }
 
     function addCommandLine(command) {
       const div = document.createElement('div');
       div.className = 'prompt-line command-line';
       div.innerHTML = '<span class="prompt">millx@terminal ~ %</span><span class="cmd-text">' + escapeHtml(command) + '</span>';
-      const promptLine = terminal.querySelector('.prompt-line');
-      promptLine.parentNode.insertBefore(div, promptLine);
+      terminal.appendChild(div);
     }
 
     function escapeHtml(s) {
@@ -392,6 +390,10 @@
         addOutput('zsh: command not found: ' + trimmed, 'error');
       }
 
+      // Keep the input prompt at the bottom
+      const promptLine = terminal.querySelector('.prompt-line');
+      terminal.appendChild(promptLine);
+      
       terminal.scrollTop = terminal.scrollHeight;
     }
 
@@ -448,6 +450,9 @@
           term.classList.remove('spin');
         }, 500);
         
+        // Keep prompt at bottom and scroll
+        var promptLine = terminal.querySelector('.prompt-line');
+        terminal.appendChild(promptLine);
         terminal.scrollTop = terminal.scrollHeight;
         konamiCode = [];
       }
