@@ -100,6 +100,9 @@
     { text: "rat is acc insanely fucking fine tho", by: "Noko" },
     { text: "opera gx vpn + proton vpn = infinite opsec", by: "Noko" },
     { text: "Hello mountable. I wanted to let you know you are doing a really shitty job at being ratted.", by: "Noko" },
+    { text: "I JUST FOUND ULTIMATE 100% BYPASS", by: "Slash" },
+    { text: "God I hate Toilet Bound Hanako Kun.", by: "Mountable" },
+    { text: "Dis the only tux I know ✌🏿  😭 🤑", by: "Mountable" },
   ];
 
   function shuffle(a) {
