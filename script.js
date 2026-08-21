@@ -91,6 +91,7 @@
     { text: "Thats on some kinky shit tho", by: "Slash" },
     { text: "I FUCKING HATE AI", by: "Slash" },
     { text: "MIKUMIKUMIKUMIKUMIKUMIKUMIKUMIKUMIKUMIKUMIKUMIKU", by: "Slash" },
+    { text: "i had a big crush on somebody who turned out to be a lesbian in 7th grade", by: "RatWithAFace" },
   ];
 
   function shuffle(a) {
