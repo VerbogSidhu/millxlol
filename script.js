@@ -90,6 +90,7 @@
     { text: "she looks trans", by: "Renascent" },
     { text: "Thats on some kinky shit tho", by: "Slash" },
     { text: "I FUCKING HATE AI", by: "Slash" },
+    { text: "MIKUMIKUMIKUMIKUMIKUMIKUMIKUMIKUMIKUMIKUMIKUMIKU", by: "Slash" },
   ];
 
   function shuffle(a) {
