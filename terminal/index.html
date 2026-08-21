@@ -43,9 +43,9 @@
     
     .title { flex: 1; text-align: center; color: #888; font-size: 13px; }
     
-    .body {
+    #output {
       padding: 20px;
-      height: 500px;
+      height: 460px;
       overflow-y: auto;
       font-size: 14px;
       line-height: 1.5;
@@ -60,14 +60,23 @@
     .white { color: #fff; font-weight: bold; }
     .gray { color: #666; }
     
-    input {
+    #input-line {
+      padding: 0 20px 20px 20px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    
+    #input-line span { color: #00ff88; margin-right: 8px; }
+    
+    #cmd {
+      flex: 1;
       background: none;
       border: none;
       color: #fff;
-      font-family: inherit;
-      font-size: inherit;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
       outline: none;
-      width: 100%;
       caret-color: #00ff88;
     }
   </style>
@@ -80,32 +89,26 @@
       <div class="btn g"></div>
       <div class="title">millx@terminal ~ zsh</div>
     </div>
-    <div class="body" id="term"></div>
+    <div id="output"></div>
+    <div id="input-line">
+      <span>millx@terminal ~ % </span>
+      <input id="cmd" type="text" autofocus spellcheck="false" autocomplete="off">
+    </div>
   </div>
 
   <script>
-    var T = document.getElementById('term');
-    var lines = [];
-    var history = [];
-    var histIdx = -1;
+    var out = document.getElementById('output');
+    var cmd = document.getElementById('cmd');
+    var hist = [];
+    var idx = 0;
 
     function print(text, cls) {
       var d = document.createElement('div');
       d.className = 'line ' + (cls || 'green');
       d.textContent = text;
-      T.appendChild(d);
+      out.appendChild(d);
+      out.scrollTop = out.scrollHeight;
     }
-
-    function scrollToBottom() {
-      T.scrollTop = T.scrollHeight;
-    }
-
-    var ASCII = [
-      '▗▖  ▗▖▗▄▄▄▖▗▖   ▗▖   ▗▖  ▗▖',
-      '▐▛▚▞▜▌  █  ▐▌   ▐▌    ▝▚▞▘ ',
-      '▐▌  ▐▌  █  ▐▌   ▐▌     ▐▌  ',
-      '▐▌  ▐▌▗▄█▄▖▐▙▄▄▖▐▙▄▄▖▗▞▘▝▚▖'
-    ];
 
     var QUOTES = [
       '"HITLER WAS JUST MENTIONED" - Millx',
@@ -119,71 +122,50 @@
       '"Toradora is so fucking good" - Millx'
     ];
 
-    function boot() {
-      ASCII.forEach(function(l) { print(l, 'pink'); });
-      print('Welcome to Millx\'s personal terminal v1.0.0', 'blue');
-      print('Type "help" to see available commands.', 'green');
-      print('Last login: Today from the internet', 'gray');
-      print('', 'green');
-      prompt();
-    }
+    // Boot message
+    print('▗▖  ▗▖▗▄▄▄▖▗▖   ▗▖   ▗▖  ▗▖', 'pink');
+    print('▐▛▚▞▜▌  █  ▐▌   ▐▌    ▝▚▞▘ ', 'pink');
+    print('▐▌  ▐▌  █  ▐▌   ▐▌     ▐▌  ', 'pink');
+    print('▐▌  ▐▌▗▄█▄▖▐▙▄▄▖▐▙▄▄▖▗▞▘▝▚▖', 'pink');
+    print('Welcome to Millx\'s personal terminal v1.0.0', 'blue');
+    print('Type "help" to see available commands.', 'green');
+    print('Last login: Today from the internet', 'gray');
+    print('');
 
-    function prompt() {
-      var line = document.createElement('div');
-      line.className = 'line green';
-      
-      var span = document.createElement('span');
-      span.textContent = 'millx@terminal ~ % ';
-      
-      var inp = document.createElement('input');
-      inp.type = 'text';
-      inp.autofocus = true;
-      inp.spellcheck = false;
-      inp.autocomplete = 'off';
-      
-      inp.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          var cmd = inp.value.trim();
-          inp.disabled = true;
-          
-          if (cmd) {
-            history.push(cmd);
-            histIdx = history.length;
-          }
-          
-          run(cmd);
-        } else if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          if (histIdx > 0) {
-            histIdx--;
-            inp.value = history[histIdx];
-          }
-        } else if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          if (histIdx < history.length - 1) {
-            histIdx++;
-            inp.value = history[histIdx];
-          } else {
-            histIdx = history.length;
-            inp.value = '';
-          }
+    cmd.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        var val = cmd.value;
+        print('millx@terminal ~ % ' + val, 'green');
+        
+        if (val.trim()) {
+          hist.push(val);
+          idx = hist.length;
         }
-      });
-      
-      line.appendChild(span);
-      line.appendChild(inp);
-      T.appendChild(line);
-      scrollToBottom();
-      inp.focus();
-    }
-
-    function run(cmd) {
-      if (!cmd) {
-        prompt();
-        return;
+        
+        run(val.trim().toLowerCase());
+        cmd.value = '';
       }
-      
-      var c = cmd.toLowerCase();
+      else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (idx > 0) {
+          idx--;
+          cmd.value = hist[idx];
+        }
+      }
+      else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (idx < hist.length - 1) {
+          idx++;
+          cmd.value = hist[idx];
+        } else {
+          idx = hist.length;
+          cmd.value = '';
+        }
+      }
+    });
+
+    function run(c) {
+      if (!c) return;
       
       if (c === 'help') {
         print('Available commands:', 'blue');
@@ -287,7 +269,7 @@
         print('  Memory:     Too many anime quotes', 'yellow');
       }
       else if (c === 'clear') {
-        T.innerHTML = '';
+        out.innerHTML = '';
       }
       else if (c === 'secret') {
         print('🔒 ACCESS GRANTED', 'pink');
@@ -297,18 +279,16 @@
         print("Don't tell anyone.", 'yellow');
       }
       else {
-        print('zsh: command not found: ' + cmd, 'red');
+        print('zsh: command not found: ' + c, 'red');
       }
       
-      prompt();
+      out.scrollTop = out.scrollHeight;
     }
 
-    T.addEventListener('click', function() {
-      var inp = T.querySelector('input:not([disabled])');
-      if (inp) inp.focus();
+    // Click anywhere to focus input
+    document.querySelector('.terminal').addEventListener('click', function() {
+      cmd.focus();
     });
-
-    boot();
   </script>
 </body>
 </html>
