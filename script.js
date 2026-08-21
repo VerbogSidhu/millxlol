@@ -94,6 +94,12 @@
     { text: "i had a big crush on somebody who turned out to be a lesbian in 7th grade", by: "RatWithAFace" },
     { text: "I still remember my first goon", by: "RatWithAFace" },
     { text: "the first thing i jerked off to was a youtube video", by: "RatWithAFace" },
+    { text: "only baddie ik is one w short black sharp hair", by: "Noko (he lowkey right)" },
+    { text: "i hav a maga hat", by: "Noko" },
+    { text: "dude the fucking epstein ai pic is hilarious", by: "Noko" },
+    { text: "rat is acc insanely fucking fine tho", by: "Noko" },
+    { text: "opera gx vpn + proton vpn = infinite opsec", by: "Noko" },
+    { text: "Hello mountable. I wanted to let you know you are doing a really shitty job at being ratted.", by: "Noko" },
   ];
 
   function shuffle(a) {
