@@ -85,6 +85,11 @@
     { text: "did you attach?", by: "Renascent" },
     { text: "Toradora is so fucking good", by: "Millx" },
     { text: "Tight ASF bro 💯", by: "Slash" },
+    { text: "Who wants free vape...?", by: "Slash" },
+    { text: "All of the women you date turn into lesbians.", by: "Mountable" },
+    { text: "she looks trans", by: "Renascent" },
+    { text: "Thats on some kinky shit tho", by: "Slash" },
+    { text: "I FUCKING HATE AI", by: "Slash" },
   ];
 
   function shuffle(a) {
