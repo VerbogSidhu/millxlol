@@ -84,6 +84,7 @@
     { text: "oshi no ko anime original ending plssssssss 🙏", by: "Mountable" },
     { text: "did you attach?", by: "Renascent" },
     { text: "Toradora is so fucking good", by: "Millx" },
+    { text: "Tight ASF bro 💯", by: "Slash" },
   ];
 
   function shuffle(a) {
