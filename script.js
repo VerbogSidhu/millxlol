@@ -103,6 +103,7 @@
     { text: "I JUST FOUND ULTIMATE 100% BYPASS", by: "Slash" },
     { text: "God I hate Toilet Bound Hanako Kun.", by: "Mountable" },
     { text: "Dis the only tux I know ✌🏿  😭 🤑", by: "Mountable" },
+    { text: "IM GONNA KILL MYSLEF", by: "Slash" },
   ];
 
   function shuffle(a) {
