@@ -130,6 +130,8 @@
     { text: "I want shaula to hug me like she hugged meili", by: "LOL" },
     { text: "WAIT DID I CALL HER MOMMY ON MY FRIENDS ACCOUNT", by: "Slash" },
     { text: "i told her to take a look in the mirror and figure out why my hb doesnt want her", by: "Slash" },
+    { text: "im actually killing myself dude", by: "Slash" },
+    { text: "i highkirk got femboy potential 🤔", by: "Millx" },
   ];
 
   function shuffle(a) {
