@@ -136,6 +136,9 @@
     { text: "we are ftg", by: "RatWithAFace" },
     { text: "agreed but also junko is hot", by: "lambda" },
     { text: "And I want to physically pry my skin from my flesh.", by: "LOL" },
+    { text: "yo play e33", by: "RatWithAFace" },
+    { text: "I'm so silly >w<", by: "Slash" },
+    { text: "I'M GOING TO BE NAKED AS FUCK IN FRONT OF YOUR KIDS.", by: "Mountable" },
   ];
 
   function shuffle(a) {
