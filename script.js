@@ -139,6 +139,8 @@
     { text: "yo play e33", by: "RatWithAFace" },
     { text: "I'm so silly >w<", by: "Slash" },
     { text: "I'M GOING TO BE NAKED AS FUCK IN FRONT OF YOUR KIDS.", by: "Mountable" },
+    { text: "gg fuggin ez", by: "Millx" },
+    { text: "yo so i like changed thepower limit on my gpu and now its making a buzzing noise everytime i tab in game", by: "Renascent" },
   ];
 
   function shuffle(a) {
