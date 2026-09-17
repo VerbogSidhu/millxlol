@@ -142,6 +142,9 @@
     { text: "gg fuggin ez", by: "Millx" },
     { text: "yo so i like changed thepower limit on my gpu and now its making a buzzing noise everytime i tab in game", by: "Renascent" },
     { text: "yo gpt 5 fix my aim", by: "Renascent" },
+    { text: "linked erectile dysfunction", by: "Millx" },
+    { text: "WHY FOES SHE HAVE DOWN SYNDROME!", by: "Mountable" },
+    { text: "u need to start working out and learning kung fu and shit", by: "Lambda" },
   ];
 
   function shuffle(a) {
