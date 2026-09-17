@@ -146,6 +146,7 @@
     { text: "WHY FOES SHE HAVE DOWN SYNDROME!", by: "Mountable" },
     { text: "u need to start working out and learning kung fu and shit", by: "Lambda" },
     { text: "myspacebroke", by: "Renascent" },
+    { text: "damn this guy died and his last comment was on nhentai", by: "Renascent" },
   ];
 
   function shuffle(a) {
