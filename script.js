@@ -145,6 +145,7 @@
     { text: "linked erectile dysfunction", by: "Millx" },
     { text: "WHY FOES SHE HAVE DOWN SYNDROME!", by: "Mountable" },
     { text: "u need to start working out and learning kung fu and shit", by: "Lambda" },
+    { text: "myspacebroke", by: "Renascent" },
   ];
 
   function shuffle(a) {
