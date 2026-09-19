@@ -147,6 +147,9 @@
     { text: "u need to start working out and learning kung fu and shit", by: "Lambda" },
     { text: "myspacebroke", by: "Renascent" },
     { text: "damn this guy died and his last comment was on nhentai", by: "Renascent" },
+    { text: "Yo hop on val crodie 😭✌️", by: "RatWithAFace" },
+    { text: "There's got to be at least one lurking for 16 year old girls", by: "Mountable" },
+    { text: "lets become val egirls and get someone to gift us", by: "Renascent" },
   ];
 
   function shuffle(a) {
