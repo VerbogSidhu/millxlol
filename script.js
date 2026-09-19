@@ -150,6 +150,7 @@
     { text: "Yo hop on val crodie 😭✌️", by: "RatWithAFace" },
     { text: "There's got to be at least one lurking for 16 year old girls", by: "Mountable" },
     { text: "lets become val egirls and get someone to gift us", by: "Renascent" },
+    { text: "yo they're like 12 and edaters", by: "Mountable" },
   ];
 
   function shuffle(a) {
