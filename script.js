@@ -152,6 +152,7 @@
     { text: "lets become val egirls and get someone to gift us", by: "Renascent" },
     { text: "yo they're like 12 and edaters", by: "Mountable" },
     { text: "yeah im a wittle ai whore :3", by: "Millx" },
+    { text: "oh my goodness netanyahu has aura", by: "Mountable" },
   ];
 
   function shuffle(a) {
