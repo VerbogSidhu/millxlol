@@ -132,7 +132,7 @@
     { text: "i told her to take a look in the mirror and figure out why my hb doesnt want her", by: "Slash" },
     { text: "im actually killing myself dude", by: "Slash" },
     { text: "i highkirk got femboy potential 🤔", by: "Millx" },
-    { text: "Girls in ties are hot", by: "SsammyK" },
+    { text: "Girls in ties are hot", by: "Ssammyk" },
     { text: "we are ftg", by: "RatWithAFace" },
     { text: "agreed but also junko is hot", by: "lambda" },
     { text: "And I want to physically pry my skin from my flesh.", by: "LOL" },
