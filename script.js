@@ -153,6 +153,22 @@
     { text: "yo they're like 12 and edaters", by: "Mountable" },
     { text: "yeah im a wittle ai whore :3", by: "Millx" },
     { text: "oh my goodness netanyahu has aura", by: "Mountable" },
+    { text: "millx do you measure your lifespan in persona releases", by: "Lambda" },
+    { text: "oh my goodness i just searched skibidi toilet on youtube", by: "Mountable" },
+    { text: "if any girl over the age of 14 that isn't obese actually enjoys this guy's content i will rip off my testicles live", by: "Mountable" },
+    { text: "Bro do u watch Infernal Beelzebub Anarchia Cruul de Apokalypsi, the Opposite of Divine, Prince of Suffering and Torment, Master of all Sin, Conqueror of the Underworld, and King of all Demonkind?", by: "Mountable" },
+    { text: "W MILLX", by: "Slash" },
+    { text: "w millx", by: "Renascent" },
+    { text: "this is cbt", by: "Mountable" },
+    { text: "I'M GONNA FUCKING DOX THIS FUCKING CHAMBER", by: "Mountable" },
+    { text: "helen keller can hit more clips", by: "Noko" },
+    { text: "no shot you're sticking your dikc in that", by: "Mountable" },
+    { text: "any time my parents touched me i would moan", by: "Slash" },
+    { text: "u r a w h o r e m i l l x", by: "Noko" },
+    { text: "yeah i'm jerking off with this", by: "Mountable" },
+    { text: "get a job millx", by: "Noko" },
+    { text: "@Millx go into val with that voice and get rizzy", by: "Noko" },
+    { text: "BRO! You cannot ghost me after getting my dog pregnant💯 We need to talk NOW!!!❗️❗️@Slash", by: "Ssammyk" },
   ];
 
   function shuffle(a) {
