@@ -169,6 +169,7 @@
     { text: "get a job millx", by: "Noko" },
     { text: "@Millx go into val with that voice and get rizzy", by: "Noko" },
     { text: "BRO! You cannot ghost me after getting my dog pregnant💯 We need to talk NOW!!!❗️❗️@Slash", by: "Ssammyk" },
+    { text: "natsuki is best girl from ddlc no question", by: "Millx" },
   ];
 
   function shuffle(a) {
