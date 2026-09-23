@@ -170,6 +170,10 @@
     { text: "@Millx go into val with that voice and get rizzy", by: "Noko" },
     { text: "BRO! You cannot ghost me after getting my dog pregnant💯 We need to talk NOW!!!❗️❗️@Slash", by: "Ssammyk" },
     { text: "natsuki is best girl from ddlc no question", by: "Millx" },
+    { text: "i literally use drugs to enhance my valorant gameplay", by: "Millx" },
+    { text: "broo stop being sussy.", by: "Slash" },
+    { text: "i think i might be a girl", by: "Slash" },
+    { text: "Weighed in at 600 yesterday u have no right to call anybody fatphobic", by: "Mountable" },
   ];
 
   function shuffle(a) {
