@@ -177,6 +177,8 @@
     { text: "i think you have to turn it off and on again", by: "GreenC" },
     { text: "Bro I'm horny", by: "Mountable" },
     { text: "Here is am in a chick fil a parking lot running astra on data", by: "Noko" },
+    { text: "chiaki nanami from danganronpa 2 is so bad", by: "Millx" },
+    { text: "kotone is wifematerial", by: "Millx" },
   ];
 
   function shuffle(a) {
