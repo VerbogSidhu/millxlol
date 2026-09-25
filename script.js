@@ -174,6 +174,9 @@
     { text: "broo stop being sussy.", by: "Slash" },
     { text: "i think i might be a girl", by: "Slash" },
     { text: "Weighed in at 600 yesterday u have no right to call anybody fatphobic", by: "Mountable" },
+    { text: "i think you have to turn it off and on again", by: "GreenC" },
+    { text: "Bro I'm horny", by: "Mountable" },
+    { text: "Here is am in a chick fil a parking lot running astra on data", by: "Noko" },
   ];
 
   function shuffle(a) {
