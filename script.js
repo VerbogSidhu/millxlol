@@ -179,6 +179,10 @@
     { text: "Here is am in a chick fil a parking lot running astra on data", by: "Noko" },
     { text: "chiaki nanami from danganronpa 2 is so bad", by: "Millx" },
     { text: "kotone is wifematerial", by: "Millx" },
+    { text: "Neon butt cocaine", by: "Mountable" },
+    { text: "Straight hampsters on a wheel circle jerking eachother up there", by: "Noko" },
+    { text: "I read hella classroom of the elite dont play with me cuh", by: "Millx" },
+    { text: "i love yaemori so muchhh", by: "Millx" },
   ];
 
   function shuffle(a) {
