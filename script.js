@@ -183,6 +183,8 @@
     { text: "Straight hampsters on a wheel circle jerking eachother up there", by: "Noko" },
     { text: "I read hella classroom of the elite dont play with me cuh", by: "Millx" },
     { text: "i love yaemori so muchhh", by: "Millx" },
+    { text: "Grief is actually fucking verified", by: "Millx" },
+    { text: "@LOL DOGGIE VERIFIED GRIEF", by: "Millx" },
   ];
 
   function shuffle(a) {
