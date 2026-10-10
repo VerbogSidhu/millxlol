@@ -185,6 +185,8 @@
     { text: "i love yaemori so muchhh", by: "Millx" },
     { text: "Grief is actually fucking verified", by: "Millx" },
     { text: "@LOL DOGGIE VERIFIED GRIEF", by: "Millx" },
+    { text: "Epstein lookalike sends his DNA test that proves he's not Epstein to Israel", by: "Mountable" },
+    { text: "Math terms be saying shit like the popycock of the second bisector and it just means sum like X = 1", by: "Noko" },
   ];
 
   function shuffle(a) {
