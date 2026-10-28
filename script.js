@@ -194,6 +194,8 @@
     { text: "I ACCIDENTLY HIT MY YART", by: "Slash" },
     { text: "Im hotdog flanking radiant", by: "Millx" },
     { text: "im supposed to be an alpha white supremacist nazi…", by: "RatWithAFace" },
+    { text: "i love black people", by: "RatWithAFace" },
+    { text: "im not racist", by: "RatWithAFace" },
   ];
 
   function shuffle(a) {
