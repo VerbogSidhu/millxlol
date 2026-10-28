@@ -187,6 +187,13 @@
     { text: "@LOL DOGGIE VERIFIED GRIEF", by: "Millx" },
     { text: "Epstein lookalike sends his DNA test that proves he's not Epstein to Israel", by: "Mountable" },
     { text: "Math terms be saying shit like the popycock of the second bisector and it just means sum like X = 1", by: "Noko" },
+    { text: "this is why i like black people", by: "RatWithAFace" },
+    { text: "dawgington i aint wanna stuyd on some real shit", by: "Millx" },
+    { text: "millx i hope you fucking die, i really just hope you fucking die. and honestly—i just hope you die.", by: "RatWithAFace" },
+    { text: "@everyone please donate to the mullvad", by: "Slash" },
+    { text: "I ACCIDENTLY HIT MY YART", by: "Slash" },
+    { text: "Im hotdog flanking radiant", by: "Millx" },
+    { text: "im supposed to be an alpha white supremacist nazi…", by: "RatWithAFace" },
   ];
 
   function shuffle(a) {
