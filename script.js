@@ -196,6 +196,7 @@
     { text: "im supposed to be an alpha white supremacist nazi…", by: "RatWithAFace" },
     { text: "i love black people", by: "RatWithAFace" },
     { text: "im not racist", by: "RatWithAFace" },
+    { text: "@Renascent do the thing where you put your finger in the gay area", by: "Slash" },
   ];
 
   function shuffle(a) {
