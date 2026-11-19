@@ -203,6 +203,7 @@
     { text: "I've only jerked off with vaseline really.", by: "Slash" },
     { text: "i mean i had my ear nearly cut off once", by: "RatWithAFace" },
     { text: "I'm gonna go beg my mommy for moisturizer and hope she doesn't think I'm masturbating with it", by: "Mountable" },
+    { text: "I can't believe they made it a feature so you can't shoot protesters", by: "Mountable" },
   ];
 
   function shuffle(a) {
