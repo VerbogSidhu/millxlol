@@ -197,6 +197,12 @@
     { text: "i love black people", by: "RatWithAFace" },
     { text: "im not racist", by: "RatWithAFace" },
     { text: "@Renascent do the thing where you put your finger in the gay area", by: "Slash" },
+    { text: "not now kitten.", by: "Renascent" },
+    { text: "The Jews are keeping me from kana arima.", by: "Mountable" },
+    { text: "Can we get more little girls on my school district website?", by: "Slash" },
+    { text: "I've only jerked off with vaseline really.", by: "Slash" },
+    { text: "i mean i had my ear nearly cut off once", by: "RatWithAFace" },
+    { text: "I'm gonna go beg my mommy for moisturizer and hope she doesn't think I'm masturbating with it", by: "Mountable" },
   ];
 
   function shuffle(a) {
