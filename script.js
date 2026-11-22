@@ -205,6 +205,7 @@
     { text: "I'm gonna go beg my mommy for moisturizer and hope she doesn't think I'm masturbating with it", by: "Mountable" },
     { text: "I can't believe they made it a feature so you can't shoot protesters", by: "Mountable" },
     { text: "heya! im mountable :3 im kind of quirky but i hope we can be friends!", by: "Mountable" },
+    { text: "I wish I had orange chicken from panda express", by: "Ssammyk" },
   ];
 
   function shuffle(a) {
